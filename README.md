@@ -1,5 +1,5 @@
-# Create-react-personal
+# React City Game
 
-##### Simple landing
+## Work in progress
 
-![Landing](/readme_screenshots/CRA.png)
+<!-- ![Landing](/readme_screenshots/CRA.png) -->
