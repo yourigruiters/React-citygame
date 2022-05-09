@@ -1,13 +1,13 @@
-import { SWITCH_THEME } from './types';
+import { TOGGLE_THEME_MODE } from './types';
 import { ReduxActionState } from '../../typings/state';
 import { ThemeType } from 'app/styles/theme';
 
 export interface ThemeState {
-  theme: ThemeType;
+  mode: ThemeType;
 }
 
 const initialState: ThemeState = {
-  theme: 'light',
+  mode: 'light',
 };
 
 const themeReducer = (
@@ -17,10 +17,10 @@ const themeReducer = (
   const { type } = action;
 
   switch (type) {
-    case SWITCH_THEME: {
+    case TOGGLE_THEME_MODE: {
       return {
         ...state,
-        theme: state.theme === 'light' ? 'dark' : 'light',
+        mode: state.mode === 'light' ? 'dark' : 'light',
       };
     }
     default: {

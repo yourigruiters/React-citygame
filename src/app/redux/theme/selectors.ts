@@ -4,7 +4,7 @@ import { get } from 'lodash-es';
 
 const selectThemeData = (state: ReduxState) => get(state, 'theme');
 
-export const selectTheme = createSelector(
+export const selectThemeMode = createSelector(
   selectThemeData,
-  (themeData) => get(themeData, 'theme'),
+  (themeData) => get(themeData, 'mode'),
 );

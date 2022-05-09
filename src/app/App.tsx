@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import { ColorTheme, ThemeType } from './styles/theme';
 import Layout from './Layout';
-// import HomePage from './containers/pages/home';
 import NotFoundPage from './pages/notFound/NotFound.page';
+import { useSelector } from 'react-redux';
+import { ReduxState } from './typings/state';
 
-interface Props {
-  reduxTheme: ThemeType;
-}
+interface Props {}
 
-const App: React.FC<Props> = ({ reduxTheme }) => {
+const App: React.FC<Props> = () => {
+  const reduxTheme: ThemeType = useSelector(
+    (state: ReduxState) => state.theme.mode,
+  );
+
+  useEffect(() => {
+    console.log(`Theme switched to: ${reduxTheme}`);
+  }, [reduxTheme]);
+
   return (
     <ThemeProvider theme={ColorTheme[reduxTheme]}>
       <BrowserRouter>

@@ -3,7 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "index.tsx",
+  "main": "./src/index.tsx",
+  "browser": "window",
   "babel": {
     "presets": [
       "@babel/preset-env",
@@ -11,7 +12,7 @@
     ]
   },
   "scripts": {
-    "start": "webpack serve",
+    "start": "webpack",
     "build": "webpack --mode production"
   },
   "keywords": [],

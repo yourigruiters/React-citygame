@@ -6,6 +6,7 @@ const __dirname = path.resolve();
 export default {
   entry: './src/index.tsx',
   mode: 'development',
+  watch: true,
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',

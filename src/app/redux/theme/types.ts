@@ -1,1 +1,1 @@
-export const SWITCH_THEME = 'setTheme';
+export const TOGGLE_THEME_MODE = 'setMode';

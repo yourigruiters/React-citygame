@@ -1,5 +1,5 @@
-import { SWITCH_THEME } from './types';
+import { TOGGLE_THEME_MODE } from './types';
 
-export const setTheme = () => ({
-  type: SWITCH_THEME,
+export const toggleThemeMode = () => ({
+  type: TOGGLE_THEME_MODE,
 });
