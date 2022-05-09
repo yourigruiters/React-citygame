@@ -23,7 +23,7 @@ export const lightTheme = {
     gray: '#d9d9d9',
     white: '#fff',
     black: '#000',
-    border: '#27272a',
+    border: '#dbdbdb',
     text00: 'rgba(0,0,0,1)',
     text01: 'rgba(0,0,0,0.85)',
     text02: 'rgba(0,0,0,0.65)',

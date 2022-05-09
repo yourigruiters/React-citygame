@@ -16,6 +16,7 @@ export default {
   },
   devServer: {
     historyApiFallback: true,
+    port: 8080,
   },
   module: {
     rules: [

@@ -1,22 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toggleThemeMode } from './redux/theme/actions';
+import Sidebar from './components/layout/sidebar/Sidebar';
+import Topbar from './components/layout/topbar/Topbar';
+import styled from '@emotion/styled';
+
+const LayoutContainer = styled.main`
+  ${({ theme: { colors } }) => `
+		display: flex;
+		width: 100%;
+		height: auto;
+		min-height: 100vh;
+    background-color: ${colors.background};
+  `}
+`;
+
+const Main = styled.main`
+  ${({ theme: { colors } }) => `
+		width: 100%;
+    background-color: ${colors.background};
+  `}
+`;
 
 interface Props {}
 
 const Layout: React.FC<Props> = () => {
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(toggleThemeMode());
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <div>
+    <LayoutContainer>
+      <Sidebar sidebarOpen={sidebarOpen} />
+      <Main>
+        <Topbar toggleSidebar={toggleSidebar} />
+        <Outlet />
+      </Main>
       <button onClick={handleClick}>Hoi</button>
-      <Outlet />
-    </div>
+    </LayoutContainer>
   );
 };
 
