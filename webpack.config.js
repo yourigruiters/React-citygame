@@ -36,6 +36,9 @@ export default {
         use: [
           {
             loader: 'file-loader',
+            // options: {
+            //   name: './src/app/media/[name].[ext]',
+            // },
           },
         ],
       },

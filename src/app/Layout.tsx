@@ -5,7 +5,6 @@ import { toggleThemeMode } from './redux/theme/actions';
 import Sidebar from './components/layout/sidebar/Sidebar';
 import Topbar from './components/layout/topbar/Topbar';
 import styled from '@emotion/styled';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const LayoutContainer = styled.main`
   ${({ theme: { colors } }) => `
@@ -34,6 +33,8 @@ const Layout: React.FC<Props> = () => {
     dispatch(toggleThemeMode());
   };
 
+  console.log(handleClick);
+
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -42,11 +43,10 @@ const Layout: React.FC<Props> = () => {
     <LayoutContainer>
       <Sidebar sidebarOpen={sidebarOpen} />
       <Main>
-        <FontAwesomeIcon icon="check-square" />
         <Topbar toggleSidebar={toggleSidebar} />
         <Outlet />
       </Main>
-      <button onClick={handleClick}>Hoi</button>
+      {/* <button onClick={handleClick}>Hoi</button> */}
     </LayoutContainer>
   );
 };
