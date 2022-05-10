@@ -26,7 +26,7 @@ const IconContainer = styled.div`
   cursor: pointer;
 `;
 
-const HamburgerIcon = styled(FontAwesomeIcon)`
+const Icon = styled(FontAwesomeIcon)`
   ${({ theme: { colors } }) => `
     color: ${colors.gray};
   `}
@@ -39,10 +39,26 @@ const HamburgerIcon = styled(FontAwesomeIcon)`
   }
 `;
 
-const LogoContainer = styled.div`
+const UserContainer = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+  width: max-content;
+  height: auto;
+`;
+
+const Text = styled.p`
+  ${({ theme: { colors } }) => `
+    color: ${colors.text03};
+  `}
+  font-size: 16px;
+`;
+
+const ProfileContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 20px;
   width: max-content;
   height: 67px;
   padding: 10px;
@@ -62,11 +78,32 @@ const Topbar: React.FC<Props> = ({ toggleSidebar }) => {
   return (
     <TopbarContainer>
       <IconContainer onClick={toggleSidebar}>
-        <HamburgerIcon icon="bars" />
+        <Icon icon="bars" />
       </IconContainer>
-      <LogoContainer>
-        <img src={logo} alt="logo" />
-      </LogoContainer>
+      <UserContainer>
+        <div>
+          <IconContainer>
+            <Icon icon="coins" />
+          </IconContainer>
+          <Text>2,300</Text>
+        </div>
+        <div>
+          <IconContainer>
+            <Icon icon="credit-card" />
+          </IconContainer>
+          <Text>100,000</Text>
+        </div>
+        <div>
+          <IconContainer>
+            <Icon icon="location-dot" />
+          </IconContainer>
+          <Text>Miami, Florida</Text>
+        </div>
+        <ProfileContainer>
+          <img src={logo} alt="logo" />
+          <Text>Youri Gruiters</Text>
+        </ProfileContainer>
+      </UserContainer>
     </TopbarContainer>
   );
 };
