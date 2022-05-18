@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import { ColorTheme, ThemeType } from './styles/theme';
 import Layout from './Layout';
-import NotFoundPage from './pages/notFound/NotFound.page';
+import NotFoundPage from './pages/NotFound.page';
 import { useSelector } from 'react-redux';
 import { ReduxState } from './typings/state';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -13,9 +13,26 @@ import {
   faCreditCard,
   faCoins,
   faLocationDot,
+  faEarthAmericas,
+  faBuildingColumns,
+  faShoppingCart,
+  faPeopleRobbery,
+  faHouse,
 } from '@fortawesome/free-solid-svg-icons';
+import HomePage from './pages/Home.page';
 
-library.add(fab, faBars, faCoins, faCreditCard, faLocationDot);
+library.add(
+  fab,
+  faBars,
+  faCoins,
+  faCreditCard,
+  faLocationDot,
+  faEarthAmericas,
+  faBuildingColumns,
+  faShoppingCart,
+  faPeopleRobbery,
+  faHouse,
+);
 
 interface Props {}
 
@@ -33,7 +50,7 @@ const App: React.FC<Props> = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            {/* <Route path=":test" element={<HomePage />} /> */}
+            <Route path="home" element={<HomePage />} />
             {/* <Route path=":test" element={<HomePage />} /> */}
             {/* <Route path=":test" element={<HomePage />} /> */}
           </Route>

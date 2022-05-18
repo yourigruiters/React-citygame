@@ -2,19 +2,20 @@ import React from 'react';
 import styled from '@emotion/styled';
 import logo from '../../../media/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const Header = styled.header<{
   sidebarOpen: boolean;
 }>`
   ${({ theme: { colors }, sidebarOpen }) => `
-		width: ${sidebarOpen ? '250px' : '70px'};
+    flex-basis: ${sidebarOpen ? '150px' : '70px'};;
+    flex-grow: 0;
+    flex-shrink: 0;
     height: auto;
     max-height: 100vh;
     background-color: ${colors.default};
     border-right: 1px solid ${colors.border};
-    transition: width 0.5s linear, background 0.25s linear,
-          background-color 0.25s linear, color 0.25s linear,
-          border 0.25s linear;
+    transition: flex-basis 0.5s linear;
   `}
   overflow: hidden;
 `;
@@ -45,7 +46,7 @@ const Navigation = styled.nav`
 const UL = styled.ul<{
   sidebarOpen: boolean;
 }>`
-  ${({ sidebarOpen }) => `
+  ${({ theme: { colors }, sidebarOpen }) => `
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,6 +56,7 @@ const UL = styled.ul<{
     list-style-type: none;
     overflow: hidden;
     transition: 0.5s all;
+    color: ${colors.gray};
   `}
 `;
 
@@ -63,25 +65,35 @@ const LI = styled.li`
   position: relative;
   top: 0;
   left: 0;
-  width: 250px;
+  width: 100%;
   display: flex;
   align-items: center;
   height: auto;
   padding: 10px 0px;
+  cursor: pointer;
+
+  &:hover,
+  &:hover svg {
+    ${({ theme: { colors } }) => `
+    color: ${colors.black};
+  `}
+  }
 `;
 
 const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
+  flex-basis: 70px;
+  flex-grow: 0;
+  flex-shrink: 0;
   height: 50px;
   padding: 10px;
   cursor: pointer;
 
   svg {
-    width: 27px;
-    height: 27px;
+    width: 24px;
+    height: 24px;
   }
 `;
 
@@ -90,12 +102,6 @@ const Icon = styled(FontAwesomeIcon)`
     color: ${colors.gray};
   `}
   transition: unset;
-
-  &:hover {
-    ${({ theme: { colors } }) => `
-    color: ${colors.black};
-  `}
-  }
 `;
 
 interface Props {
@@ -110,24 +116,46 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen }) => {
       </LogoContainer>
       <Navigation>
         <UL sidebarOpen={sidebarOpen}>
-          <LI>
-            <IconContainer>
-              <Icon icon="credit-card" />
-            </IconContainer>
-            <p>Test</p>
-          </LI>
-          <LI>
-            <IconContainer>
-              <Icon icon="credit-card" />
-            </IconContainer>
-            <p>Test</p>
-          </LI>
-          <LI>
-            <IconContainer>
-              <Icon icon="credit-card" />
-            </IconContainer>
-            <p>Test</p>
-          </LI>
+          <Link to="home">
+            <LI>
+              <IconContainer>
+                <Icon icon="house" />
+              </IconContainer>
+              <p>Home</p>
+            </LI>
+          </Link>
+          <Link to="travel">
+            <LI>
+              <IconContainer>
+                <Icon icon="earth-americas" />
+              </IconContainer>
+              <p>Travel</p>
+            </LI>
+          </Link>
+          <Link to="bank">
+            <LI>
+              <IconContainer>
+                <Icon icon="building-columns" />
+              </IconContainer>
+              <p>Bank</p>
+            </LI>
+          </Link>
+          <Link to="shop">
+            <LI>
+              <IconContainer>
+                <Icon icon="shopping-cart" />
+              </IconContainer>
+              <p>Shop</p>
+            </LI>
+          </Link>
+          <Link to="crime">
+            <LI>
+              <IconContainer>
+                <Icon icon="people-robbery" />
+              </IconContainer>
+              <p>Crime</p>
+            </LI>
+          </Link>
         </UL>
       </Navigation>
     </Header>
