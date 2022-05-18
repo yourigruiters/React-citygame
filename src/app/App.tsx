@@ -34,6 +34,8 @@ const App: React.FC<Props> = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             {/* <Route path=":test" element={<HomePage />} /> */}
+            {/* <Route path=":test" element={<HomePage />} /> */}
+            {/* <Route path=":test" element={<HomePage />} /> */}
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
