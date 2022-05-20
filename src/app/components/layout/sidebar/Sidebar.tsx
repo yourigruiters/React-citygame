@@ -79,7 +79,7 @@ const LI = styled.li`
   &:hover,
   &:hover svg {
     ${({ theme: { colors } }) => `
-    color: ${colors.black};
+    color: ${colors.defaultReversed};
   `}
   }
 `;

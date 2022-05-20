@@ -22,9 +22,11 @@ const TooltipContent = styled.div`
   padding: 5px 15px;
   border-radius: 6px;
   text-align: center;
-  color: #fff;
-  background-color: black;
-  transition: opacity 0.25s;
+  ${({ theme: { colors } }) => `
+  color: ${colors.default};
+    background-color: ${colors.backgroundReversed};
+    transition: opacity 0.25s;
+  `}
 `;
 
 interface Props {

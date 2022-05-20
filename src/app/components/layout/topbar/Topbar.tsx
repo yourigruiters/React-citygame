@@ -37,6 +37,15 @@ const IconContainer = styled.div`
   cursor: pointer;
 `;
 
+const ToggleIconContainer = styled(IconContainer)`
+  &:hover,
+  &:hover svg {
+    ${({ theme: { colors } }) => `
+    color: ${colors.defaultReversed};
+  `}
+  }
+`;
+
 const Icon = styled(FontAwesomeIcon)`
   ${({ theme: { colors } }) => `
     color: ${colors.gray};
@@ -61,7 +70,7 @@ const UserData = styled.div`
 
   &:hover svg {
     ${({ theme: { colors } }) => `
-    color: ${colors.black};
+    color: ${colors.defaultReversed};
   `}
   }
 `;
@@ -150,11 +159,12 @@ const LI = styled.li`
   height: auto;
   padding: 10px 0px;
   cursor: pointer;
+  transition: unset;
 
   &:hover,
   &:hover svg {
     ${({ theme: { colors } }) => `
-    color: ${colors.black};
+    color: ${colors.defaultReversed};
   `}
   }
 `;
@@ -188,9 +198,9 @@ const Topbar: React.FC<Props> = ({ toggleSidebar }) => {
   return (
     <TopContainer>
       <TopbarContainer>
-        <IconContainer onClick={toggleSidebar}>
+        <ToggleIconContainer onClick={toggleSidebar}>
           <Icon icon="bars" />
-        </IconContainer>
+        </ToggleIconContainer>
         <UserContainer>
           <Tooltip value="Coins in hand">
             <UserData>

@@ -3,7 +3,9 @@ export type ThemeType = 'light' | 'dark';
 export interface ITheme {
   colors: {
     background: string;
+    backgroundReversed: string;
     default: string;
+    defaultReversed: string;
     gray: string;
     white: string;
     black: string;
@@ -19,7 +21,9 @@ export interface ITheme {
 export const lightTheme = {
   colors: {
     background: '#f7f6f9',
+    backgroundReversed: '#18181b',
     default: '#fff',
+    defaultReversed: '#0e0e10',
     gray: '#d9d9d9',
     white: '#fff',
     black: '#000',
@@ -35,7 +39,9 @@ export const lightTheme = {
 export const darkTheme = {
   colors: {
     background: '#18181b',
+    backgroundReversed: '#f7f6f9',
     default: '#0e0e10',
+    defaultReversed: '#fff',
     gray: '#d9d9d9',
     white: '#fff',
     black: '#000',
