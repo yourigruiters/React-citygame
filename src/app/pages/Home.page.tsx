@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 const Container = styled.div`
   ${({ theme: { colors } }) => `
     background-color: ${colors.background};
+    padding: 40px;
   `}
 `;
 

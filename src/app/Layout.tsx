@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { toggleThemeMode } from './redux/theme/actions';
 import Sidebar from './components/layout/sidebar/Sidebar';
 import Topbar from './components/layout/topbar/Topbar';
 import styled from '@emotion/styled';
 
-const LayoutContainer = styled.main`
+const LayoutContainer = styled.div`
   ${({ theme: { colors } }) => `
 		display: flex;
 		width: 100%;
@@ -27,13 +25,6 @@ interface Props {}
 
 const Layout: React.FC<Props> = () => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
-  const dispatch = useDispatch();
-
-  const handleClick = () => {
-    dispatch(toggleThemeMode());
-  };
-
-  console.log(handleClick);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);

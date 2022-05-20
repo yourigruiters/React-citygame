@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../../media/logo.png';
 import Tooltip from '../../Tooltip';
+import { useDispatch } from 'react-redux';
+import { toggleThemeMode } from '../../../redux/theme/actions';
+import { transitionStyle } from '../../../styles/defaultStyles';
 
 const TopContainer = styled.div`
   display: flex;
@@ -71,6 +74,21 @@ const Text = styled.p`
 `;
 
 const ProfileContainer = styled.div`
+  position: relative;
+  display: flex;
+  width: max-content;
+  height: 60px;
+
+  &:before {
+    content: '';
+    width: 1px;
+    height: 100%;
+    background-color: green;
+    margin-right: 15px;
+  }
+`;
+
+const Profile = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,6 +102,60 @@ const ProfileContainer = styled.div`
     display: block;
     width: 40px;
     height: 40px;
+  }
+`;
+
+const ProfileOverlay = styled.div`
+  position: absolute;
+  top: 80px;
+  right: 0px;
+  width: 200px;
+  height: auto;
+  padding: 15px;
+  border-radius: 8px;
+  ${({ theme: { colors } }) => `
+    background-color: ${colors.default};
+    border: 1px solid ${colors.border};
+  `}
+`;
+
+const UL = styled.ul`
+  ${({ theme: { colors } }) => `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    column-gap: 10px;
+		width: 100%;
+    height: auto;
+    list-style-type: none;
+    overflow: hidden;
+    transition: ${transitionStyle}, color 0.25s;
+    color: ${colors.gray};
+  `}
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
+// IMG EN TEKST IN AANBRENGEN MET POSITON - ZORGEN DAT DIE ZICHTBAAR IS AL HET BREDER WORDT
+const LI = styled.li`
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: auto;
+  padding: 10px 0px;
+  cursor: pointer;
+
+  &:hover,
+  &:hover svg {
+    ${({ theme: { colors } }) => `
+    color: ${colors.black};
+  `}
   }
 `;
 
@@ -105,6 +177,14 @@ interface Props {
 }
 
 const Topbar: React.FC<Props> = ({ toggleSidebar }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(toggleThemeMode());
+  };
+
   return (
     <TopContainer>
       <TopbarContainer>
@@ -137,8 +217,17 @@ const Topbar: React.FC<Props> = ({ toggleSidebar }) => {
             </UserData>
           </Tooltip>
           <ProfileContainer>
-            <img src={logo} alt="logo" />
-            <Text>Youri Gruiters</Text>
+            <Profile onClick={() => setIsOpen(!isOpen)}>
+              <img src={logo} alt="logo" />
+              <Text>Youri Gruiters</Text>
+            </Profile>
+            {isOpen && (
+              <ProfileOverlay>
+                <UL>
+                  <LI onClick={handleClick}>Toggle theme</LI>
+                </UL>
+              </ProfileOverlay>
+            )}
           </ProfileContainer>
         </UserContainer>
       </TopbarContainer>

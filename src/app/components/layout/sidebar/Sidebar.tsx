@@ -3,19 +3,19 @@ import styled from '@emotion/styled';
 import logo from '../../../media/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { transitionStyle } from '../../../styles/defaultStyles';
 
 const Header = styled.header<{
   sidebarOpen: boolean;
 }>`
   ${({ theme: { colors }, sidebarOpen }) => `
-    flex-basis: ${sidebarOpen ? '150px' : '70px'};;
+    flex-basis: ${sidebarOpen ? '150px' : '70px'};
     flex-grow: 0;
     flex-shrink: 0;
-    height: auto;
-    max-height: 100vh;
+    min-height: 100vh;
     background-color: ${colors.default};
     border-right: 1px solid ${colors.border};
-    transition: flex-basis 0.5s linear;
+    transition: ${transitionStyle}, flex-basis 0.25s linear;
   `}
   overflow: hidden;
 `;
@@ -55,9 +55,13 @@ const UL = styled.ul<{
     height: auto;
     list-style-type: none;
     overflow: hidden;
-    transition: 0.5s all;
     color: ${colors.gray};
   `}
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 // IMG EN TEKST IN AANBRENGEN MET POSITON - ZORGEN DAT DIE ZICHTBAAR IS AL HET BREDER WORDT
