@@ -13,16 +13,22 @@ const TooltipContainer = styled.div`
   }
 `;
 
-const TooltipContent = styled.div`
-  opacity: 0;
-  position: absolute;
-  top: 40px;
-  width: max-content;
-  height: auto;
-  padding: 5px 15px;
-  border-radius: 6px;
-  text-align: center;
-  ${({ theme: { colors } }) => `
+const TooltipContent = styled.div<{
+  position: 'bottom' | 'right';
+  display: boolean;
+}>`
+  ${({ theme: { colors }, position, display }) => `
+    display: ${display ? 'block' : 'none'};
+    opacity: 0;
+    position: absolute;
+    top: ${position === 'bottom' ? '40px' : '0px'};
+    left: ${position === 'bottom' ? '0px' : '50px'};;
+    width: max-content;
+    height: auto;
+    padding: 5px 15px;
+    border-radius: 6px;
+    text-align: center;
+
   color: ${colors.default};
     background-color: ${colors.backgroundReversed};
     transition: opacity 0.25s;
@@ -31,14 +37,27 @@ const TooltipContent = styled.div`
 
 interface Props {
   value: string;
+  position?: 'bottom' | 'right';
+  display?: boolean;
   children?: React.ReactNode;
 }
 
-const Tooltip: React.FC<Props> = ({ value, children }) => {
+const Tooltip: React.FC<Props> = ({
+  value,
+  position = 'bottom',
+  display = true,
+  children,
+}) => {
   return (
     <TooltipContainer>
       {children}
-      <TooltipContent className="tooltip">{value}</TooltipContent>
+      <TooltipContent
+        className="tooltip"
+        position={position}
+        display={display}
+      >
+        {value}
+      </TooltipContent>
     </TooltipContainer>
   );
 };

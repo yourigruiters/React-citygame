@@ -85,13 +85,14 @@ const Text = styled.p`
 const ProfileContainer = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   width: max-content;
   height: 60px;
 
   &:before {
     content: '';
     width: 1px;
-    height: 100%;
+    height: 40%;
     background-color: green;
     margin-right: 15px;
   }

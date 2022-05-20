@@ -4,20 +4,20 @@ import logo from '../../../media/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { transitionStyle } from '../../../styles/defaultStyles';
+import Tooltip from '../../Tooltip';
 
 const Header = styled.header<{
   sidebarOpen: boolean;
 }>`
   ${({ theme: { colors }, sidebarOpen }) => `
-    flex-basis: ${sidebarOpen ? '150px' : '70px'};
+    width: ${sidebarOpen ? '150px' : '70px'};
     flex-grow: 0;
     flex-shrink: 0;
     min-height: 100vh;
     background-color: ${colors.default};
     border-right: 1px solid ${colors.border};
-    transition: ${transitionStyle}, flex-basis 0.25s linear;
+    transition: ${transitionStyle}, width 0.25s linear;
   `}
-  overflow: hidden;
 `;
 
 const LogoContainer = styled.div`
@@ -54,7 +54,6 @@ const UL = styled.ul<{
 		width: ${sidebarOpen ? '100%' : '100%'};
     height: auto;
     list-style-type: none;
-    overflow: hidden;
     color: ${colors.gray};
   `}
 
@@ -62,6 +61,19 @@ const UL = styled.ul<{
     text-decoration: none;
     color: inherit;
   }
+
+  ${({ theme: { colors }, sidebarOpen }) => `
+    p {
+      color: ${colors.gray};
+      opacity: ${sidebarOpen ? '1' : '0'};
+      transition: ${transitionStyle}, opacity 0.25s;
+
+      &:hover,
+      &:hover svg {
+        color: ${colors.defaultReversed};
+      }
+    }
+  `}
 `;
 
 // IMG EN TEKST IN AANBRENGEN MET POSITON - ZORGEN DAT DIE ZICHTBAAR IS AL HET BREDER WORDT
@@ -121,44 +133,74 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen }) => {
       <Navigation>
         <UL sidebarOpen={sidebarOpen}>
           <Link to="home">
-            <LI>
-              <IconContainer>
-                <Icon icon="house" />
-              </IconContainer>
-              <p>Home</p>
-            </LI>
+            <Tooltip
+              value="Home"
+              position="right"
+              display={sidebarOpen === false}
+            >
+              <LI>
+                <IconContainer>
+                  <Icon icon="house" />
+                </IconContainer>
+                <p>Home</p>
+              </LI>
+            </Tooltip>
           </Link>
           <Link to="travel">
-            <LI>
-              <IconContainer>
-                <Icon icon="earth-americas" />
-              </IconContainer>
-              <p>Travel</p>
-            </LI>
+            <Tooltip
+              value="Travel"
+              position="right"
+              display={sidebarOpen === false}
+            >
+              <LI>
+                <IconContainer>
+                  <Icon icon="earth-americas" />
+                </IconContainer>
+                <p>Travel</p>
+              </LI>
+            </Tooltip>
           </Link>
           <Link to="bank">
-            <LI>
-              <IconContainer>
-                <Icon icon="building-columns" />
-              </IconContainer>
-              <p>Bank</p>
-            </LI>
+            <Tooltip
+              value="Bank"
+              position="right"
+              display={sidebarOpen === false}
+            >
+              <LI>
+                <IconContainer>
+                  <Icon icon="building-columns" />
+                </IconContainer>
+                <p>Bank</p>
+              </LI>
+            </Tooltip>
           </Link>
           <Link to="shop">
-            <LI>
-              <IconContainer>
-                <Icon icon="shopping-cart" />
-              </IconContainer>
-              <p>Shop</p>
-            </LI>
+            <Tooltip
+              value="Shop"
+              position="right"
+              display={sidebarOpen === false}
+            >
+              <LI>
+                <IconContainer>
+                  <Icon icon="shopping-cart" />
+                </IconContainer>
+                <p>Shop</p>
+              </LI>
+            </Tooltip>
           </Link>
           <Link to="crime">
-            <LI>
-              <IconContainer>
-                <Icon icon="people-robbery" />
-              </IconContainer>
-              <p>Crime</p>
-            </LI>
+            <Tooltip
+              value="Crime"
+              position="right"
+              display={sidebarOpen === false}
+            >
+              <LI>
+                <IconContainer>
+                  <Icon icon="people-robbery" />
+                </IconContainer>
+                <p>Crime</p>
+              </LI>
+            </Tooltip>
           </Link>
         </UL>
       </Navigation>
